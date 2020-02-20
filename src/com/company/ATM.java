@@ -47,7 +47,7 @@ public class ATM {
 
     private void replenishment() throws FileNotFoundException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("How mach do you what to replenish?");
+        System.out.println("How mach do you what to replenish ?");
         int plus = scanner.nextInt();
         cash += plus;
         save();
@@ -55,7 +55,7 @@ public class ATM {
 
     private void take_off() throws FileNotFoundException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("How mach do you want to remove?");
+        System.out.println("How mach do you want to remove ?");
         int minus = scanner.nextInt();
         cash -= minus;
         save();
