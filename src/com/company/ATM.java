@@ -113,7 +113,7 @@ public class ATM {
         Scanner scan = new Scanner(System.in);
         int rePlay = scan.nextInt();
 
-        if(rePlay == 0) {
+        if (rePlay == 0) {
             security();
         }
     }
