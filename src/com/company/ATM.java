@@ -78,12 +78,15 @@ public class ATM {
                         g = true;
                     }
                 }
+                if (g == true) {
+                    System.out.println("The operation was successful");
+                }
 
             } else {
                 System.out.println("Inappropriate amount");
             }
             cash -= minus;
-        }else{
+        } else {
             System.out.println("Lack of funds");
         }
 
