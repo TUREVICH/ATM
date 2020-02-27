@@ -80,10 +80,9 @@ public class ATM {
                         bill100number++;
                     }
 
-                    System.out.println("20 : " + bill20number + "50 : " + bill50number + "100 : " + bill100number);
-
                     if (minus == 0) {
                         g = true;
+                        System.out.println("20 : " + bill20number + "50 : " + bill50number + "100 : " + bill100number);
                         System.out.println("The operation was successful");
                     }
                 }
