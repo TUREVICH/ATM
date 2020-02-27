@@ -56,6 +56,9 @@ public class ATM {
         int bill20 = 20;
         int bill50 = 50;
         int bill100 = 100;
+        int bill20number = 0;
+        int bill50number = 0;
+        int bill100number = 0;
         boolean g;
 
         Scanner scanner = new Scanner(System.in);
@@ -68,11 +71,16 @@ public class ATM {
 
                     if (minus > bill100) {
                         minus -= bill100;
+                        bill20number++;
                     } else if (minus > bill50) {
                         minus -= bill50;
+                        bill50number++;
                     } else if (minus > bill20) {
                         minus -= bill20;
+                        bill100number++;
                     }
+
+                    System.out.println("20 : " + bill20number + "50 : " + bill50number + "100 : " + bill100number);
 
                     if (minus == 0) {
                         g = true;
