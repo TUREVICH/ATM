@@ -36,7 +36,6 @@ public class ATM {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter new password:");
         int new_password = scan.nextInt();
-
         pw.println(new_password);
         pw.close();
     }
@@ -47,17 +46,47 @@ public class ATM {
 
     private void replenishment() throws FileNotFoundException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("How mach do you what to replenish ?");
+        System.out.println("How mach do you what to replenish?");
         int plus = scanner.nextInt();
         cash += plus;
         save();
     }
 
     private void take_off() throws FileNotFoundException {
+        int bill20 = 20;
+        int bill50 = 50;
+        int bill100 = 100;
+        boolean g;
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("How mach do you want to remove ?");
+        System.out.println("How mach do you want to remove?");
         int minus = scanner.nextInt();
-        cash -= minus;
+        if (cash >= minus) {
+            if (minus % bill20 == 0 || minus % bill50 == 0 || minus % bill100 == 0) {
+
+                while (g = false) {
+
+                    if (minus > bill100) {
+                        minus -= bill100;
+                    } else if (minus > bill50) {
+                        minus -= bill50;
+                    } else if (minus > bill20) {
+                        minus -= bill20;
+                    }
+
+                    if (minus == 0) {
+                        g = true;
+                    }
+                }
+
+            } else {
+                System.out.println("Inappropriate amount");
+            }
+            cash -= minus;
+        }else{
+            System.out.println("Lack of funds");
+        }
+
         save();
     }
 
