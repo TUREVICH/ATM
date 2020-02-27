@@ -76,10 +76,8 @@ public class ATM {
 
                     if (minus == 0) {
                         g = true;
+                        System.out.println("The operation was successful");
                     }
-                }
-                if (g == true) {
-                    System.out.println("The operation was successful");
                 }
 
             } else {
