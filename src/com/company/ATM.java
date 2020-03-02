@@ -8,7 +8,11 @@ import java.util.Scanner;
 /**
  * The type Atm.
  */
-public class ATM {
+class ATM {
+    /**
+     * The Security.
+     */
+    private Security security = new Security();
     private int cash;
     final private int denomination20 = 20;
     final private int denomination50 = 50;
@@ -17,43 +21,6 @@ public class ATM {
     private int denomination50number;
     private int denomination100number;
 
-
-    /**
-     * Security.
-     *
-     * @throws FileNotFoundException the file not found exception
-     */
-    public void security() throws FileNotFoundException {
-        for (int i = 0; i < 3; i++) {
-            File file = new File("Password");
-            Scanner scanner = new Scanner(file);
-            int password_true = scanner.nextInt();
-            scanner.close();
-
-            Scanner scan = new Scanner(System.in);
-            System.out.println("Enter Password:");
-            int password_try = scan.nextInt();
-
-            if (password_true == password_try) {
-                i = 3;
-                menu();
-                break;
-            } else {
-                System.out.println("Wrong password");
-            }
-        }
-    }
-
-    private void changePassword() throws FileNotFoundException {
-        File file = new File("Password");
-        PrintWriter pw = new PrintWriter(file);
-
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter new password:");
-        int new_password = scan.nextInt();
-        pw.println(new_password);
-        pw.close();
-    }
 
     private void balance(int c) {
         System.out.println("Your balance:" + "\n" + c + " $");
@@ -115,7 +82,7 @@ public class ATM {
      * @param bill50number  the bill 50 number
      * @param bill100number the bill 100 number
      */
-    public ATM(int bill20number, int bill50number, int bill100number) {
+    ATM(int bill20number, int bill50number, int bill100number) {
         this.denomination20number = bill20number;
         this.denomination50number = bill50number;
         this.denomination100number = bill100number;
@@ -140,7 +107,12 @@ public class ATM {
         System.out.println("Exit");
     }
 
-    private void menu() throws FileNotFoundException {
+    /**
+     * Menu.
+     *
+     * @throws FileNotFoundException the file not found exception
+     */
+    void menu() throws FileNotFoundException {
         start();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose action : " + "\n" + "1. Replenishment" + "\n" + "2. Balance" + "\n" + "3. Take off cash" + "\n" + "4. Change" + "\n" + "0. Exit");
@@ -157,7 +129,7 @@ public class ATM {
                 takeOff();
                 break;
             case 4:
-                changePassword();
+                security.changePassword();
                 break;
             case 0:
                 exit();
@@ -174,7 +146,7 @@ public class ATM {
         int rePlay = scan.nextInt();
 
         if (rePlay == 0) {
-            security();
+            security.security();
         }
     }
 }
