@@ -12,7 +12,7 @@ class Security {
     /**
      * The Atm.
      */
-    private ATM atm = new ATM(1,1,1);
+    private ATM atm = new ATM(1, 1, 1);
 
     /**
      * Security.
