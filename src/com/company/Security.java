@@ -12,8 +12,8 @@ class Security {
     /**
      * The Atm.
      */
-    private ATM atm = new ATM(1, 1, 1);
-
+    ATM atm = new ATM(0, 0, 0);
+    Scanner scan = new Scanner(System.in);
     /**
      * Security.
      *
@@ -26,7 +26,7 @@ class Security {
             int password_true = scanner.nextInt();
             scanner.close();
 
-            Scanner scan = new Scanner(System.in);
+
             System.out.println("Enter Password:");
             int password_try = scan.nextInt();
 
@@ -49,7 +49,6 @@ class Security {
         File file = new File("Password");
         PrintWriter pw = new PrintWriter(file);
 
-        Scanner scan = new Scanner(System.in);
         System.out.println("Enter new password:");
         int new_password = scan.nextInt();
         pw.println(new_password);

@@ -12,19 +12,18 @@ class ATM {
     /**
      * The Security.
      */
-    private Security security = new Security();
+    Security security = new Security();
     private int cash;
     private int denomination20number;
     private int denomination50number;
     private int denomination100number;
-
+    Scanner scanner = new Scanner(System.in);
 
     private void balance(int c) {
         System.out.println("Your balance:" + "\n" + c + " $");
     }
 
     private void replenishment() throws FileNotFoundException {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("How mach do you what to replenish?");
         int plus = scanner.nextInt();
         cash += plus;
@@ -32,10 +31,8 @@ class ATM {
     }
 
     private void takeOff() throws FileNotFoundException {
-
         boolean g = false;
 
-        Scanner scanner = new Scanner(System.in);
         System.out.println("How mach do you want to remove?");
         int minus = scanner.nextInt();
         if (cash >= minus) {
@@ -78,14 +75,14 @@ class ATM {
     /**
      * Instantiates a new Atm.
      *
-     * @param bill20number  the bill 20 number
-     * @param bill50number  the bill 50 number
-     * @param bill100number the bill 100 number
+     * @param denomination20number  the bill 20 number
+     * @param denomination50number  the bill 50 number
+     * @param denomination100number the bill 100 number
      */
-    ATM(int bill20number, int bill50number, int bill100number) {
-        this.denomination20number = bill20number;
-        this.denomination50number = bill50number;
-        this.denomination100number = bill100number;
+    ATM(int denomination20number, int denomination50number, int denomination100number) {
+        this.denomination20number = denomination20number;
+        this.denomination50number = denomination50number;
+        this.denomination100number = denomination100number;
     }
 
     private void start() throws FileNotFoundException {
@@ -114,7 +111,6 @@ class ATM {
      */
     void menu() throws FileNotFoundException {
         start();
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Choose action : " + "\n" + "1. Replenishment" + "\n" + "2. Balance" + "\n" + "3. Take off cash" + "\n" + "4. Change" + "\n" + "0. Exit");
         int option = scanner.nextInt();
         switch (option) {
