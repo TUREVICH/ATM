@@ -148,5 +148,4 @@ class ATM {
         if (rePlay == 0) {
             security.security();
         }
-    }
-}
+    }}
