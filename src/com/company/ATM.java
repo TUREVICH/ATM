@@ -14,9 +14,6 @@ class ATM {
      */
     private Security security = new Security();
     private int cash;
-    final private int denomination20 = 20;
-    final private int denomination50 = 50;
-    final private int denomination100 = 100;
     private int denomination20number;
     private int denomination50number;
     private int denomination100number;
@@ -45,6 +42,9 @@ class ATM {
             int temp = minus;
             while (!g) {
 
+                int denomination20 = 20;
+                int denomination50 = 50;
+                int denomination100 = 100;
                 if (temp >= denomination100) {
                     temp -= denomination100;
                     denomination100number++;
@@ -148,4 +148,5 @@ class ATM {
         if (rePlay == 0) {
             security.security();
         }
-    }}
+    }
+}
