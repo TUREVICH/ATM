@@ -5,16 +5,24 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+/**
+ * The type Atm.
+ */
 public class ATM {
     private int cash;
-    private int denomination20 = 20;
-    private int denomination50 = 50;
-    private int denomination100 = 100;
+    final private int denomination20 = 20;
+    final private int denomination50 = 50;
+    final private int denomination100 = 100;
     private int denomination20number;
     private int denomination50number;
     private int denomination100number;
 
 
+    /**
+     * Security.
+     *
+     * @throws FileNotFoundException the file not found exception
+     */
     public void security() throws FileNotFoundException {
         for (int i = 0; i < 3; i++) {
             File file = new File("Password");
@@ -36,7 +44,7 @@ public class ATM {
         }
     }
 
-    private void change_password() throws FileNotFoundException {
+    private void changePassword() throws FileNotFoundException {
         File file = new File("Password");
         PrintWriter pw = new PrintWriter(file);
 
@@ -59,7 +67,7 @@ public class ATM {
         save();
     }
 
-    private void take_off() throws FileNotFoundException {
+    private void takeOff() throws FileNotFoundException {
 
         boolean g = false;
 
@@ -100,6 +108,13 @@ public class ATM {
         save();
     }
 
+    /**
+     * Instantiates a new Atm.
+     *
+     * @param bill20number  the bill 20 number
+     * @param bill50number  the bill 50 number
+     * @param bill100number the bill 100 number
+     */
     public ATM(int bill20number, int bill50number, int bill100number) {
         this.denomination20number = bill20number;
         this.denomination50number = bill50number;
@@ -139,10 +154,10 @@ public class ATM {
                 balance(cash);
                 break;
             case 3:
-                take_off();
+                takeOff();
                 break;
             case 4:
-                change_password();
+                changePassword();
                 break;
             case 0:
                 exit();
