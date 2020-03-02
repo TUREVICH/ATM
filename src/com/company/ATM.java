@@ -12,12 +12,12 @@ class ATM {
     /**
      * The Security.
      */
-    Security security = new Security();
+    private Security security = new Security();
     private int cash;
-    private int denomination20number;
-    private int denomination50number;
-    private int denomination100number;
-    Scanner scanner = new Scanner(System.in);
+    private int denomination20number = 0;
+    private int denomination50number = 0;
+    private int denomination100number = 0;
+    private Scanner scanner = new Scanner(System.in);
 
     private void balance(int c) {
         System.out.println("Your balance:" + "\n" + c + " $");
@@ -70,19 +70,6 @@ class ATM {
         cash -= minus;
 
         save();
-    }
-
-    /**
-     * Instantiates a new Atm.
-     *
-     * @param denomination20number  the bill 20 number
-     * @param denomination50number  the bill 50 number
-     * @param denomination100number the bill 100 number
-     */
-    ATM(int denomination20number, int denomination50number, int denomination100number) {
-        this.denomination20number = denomination20number;
-        this.denomination50number = denomination50number;
-        this.denomination100number = denomination100number;
     }
 
     private void start() throws FileNotFoundException {

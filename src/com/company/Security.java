@@ -12,8 +12,7 @@ class Security {
     /**
      * The Atm.
      */
-    ATM atm = new ATM(0, 0, 0);
-    Scanner scan = new Scanner(System.in);
+    private Scanner scan = new Scanner(System.in);
     /**
      * Security.
      *
@@ -32,7 +31,6 @@ class Security {
 
             if (password_true == password_try) {
                 i = 3;
-                atm.menu();
                 break;
             } else {
                 System.out.println("Wrong password");
