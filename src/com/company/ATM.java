@@ -7,6 +7,13 @@ import java.util.Scanner;
 
 public class ATM {
     private int cash;
+    private int denomination20 = 20;
+    private int denomination50 = 50;
+    private int denomination100 = 100;
+    private int denomination20number;
+    private int denomination50number;
+    private int denomination100number;
+
 
     public void security() throws FileNotFoundException {
         for (int i = 0; i < 3; i++) {
@@ -53,49 +60,50 @@ public class ATM {
     }
 
     private void take_off() throws FileNotFoundException {
-        int bill20 = 20;
-        int bill50 = 50;
-        int bill100 = 100;
-        int bill20number = 0;
-        int bill50number = 0;
-        int bill100number = 0;
-        boolean g;
+
+        boolean g = false;
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("How mach do you want to remove?");
         int minus = scanner.nextInt();
         if (cash >= minus) {
-            if (minus % bill20 == 0 || minus % bill50 == 0 || minus % bill100 == 0) {
+            int temp = minus;
+            while (!g) {
 
-                while (g = false) {
-
-                    if (minus > bill100) {
-                        minus -= bill100;
-                        bill20number++;
-                    } else if (minus > bill50) {
-                        minus -= bill50;
-                        bill50number++;
-                    } else if (minus > bill20) {
-                        minus -= bill20;
-                        bill100number++;
-                    }
-
-                    if (minus == 0) {
-                        g = true;
-                        System.out.println("20 : " + bill20number + "50 : " + bill50number + "100 : " + bill100number);
-                        System.out.println("The operation was successful");
-                    }
+                if (temp >= denomination100) {
+                    temp -= denomination100;
+                    denomination100number++;
+                } else if (temp >= denomination50) {
+                    temp -= denomination50;
+                    denomination50number++;
+                } else if (temp >= denomination20) {
+                    temp -= denomination20;
+                    denomination20number++;
                 }
 
-            } else {
-                System.out.println("Inappropriate amount");
+                if (temp < 0) {
+                    System.out.println("Inappropriate amount");
+                }
+
+                if (temp == 0) {
+                    g = true;
+                    System.out.println("20 : " + denomination20number + "\n" + " 50 : " + denomination50number + "\n" + " 100 : " + denomination100number);
+                    System.out.println("The operation was successful");
+                }
             }
-            cash -= minus;
         } else {
             System.out.println("Lack of funds");
         }
 
+        cash -= minus;
+
         save();
+    }
+
+    public ATM(int bill20number, int bill50number, int bill100number) {
+        this.denomination20number = bill20number;
+        this.denomination50number = bill50number;
+        this.denomination100number = bill100number;
     }
 
     private void start() throws FileNotFoundException {
