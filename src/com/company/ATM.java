@@ -1,23 +1,13 @@
 package com.company;
 
-import java.io.File;
+
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class ATM implements Persistable, Payable{
+public class ATM implements Payable {
+    private Persistable ReadWritePersistable = new ReadWrite();
     private Scanner scanner = new Scanner(System.in);
-    private int cash;
     private boolean opportunity;
-
-    @Override
-    public int getCash() throws FileNotFoundException {
-        File file = new File("Cash");
-        Scanner scanner = new Scanner(file);
-        cash = scanner.nextInt();
-        scanner.close();
-        return cash;
-    }
 
     @Override
     public void getBalance(int cash) {
@@ -25,22 +15,14 @@ public class ATM implements Persistable, Payable{
     }
 
     @Override
-    public void save(int cash) throws FileNotFoundException {
-        File file = new File("Cash");
-        PrintWriter pw = new PrintWriter(file);
-        pw.println(cash);
-        pw.close();
-    }
-
-    @Override
     public void replenishment(int cash) throws FileNotFoundException {
         System.out.println("How mach do you what to replenish?");
         int plus = scanner.nextInt();
         cash += plus;
-        save(cash);
+        ReadWritePersistable.save(cash);
     }
 
-    private boolean checkDenomination(int temp){
+    private boolean checkDenomination(int temp) {
 
         int denomination20 = 20;
         int denomination50 = 50;
@@ -53,11 +35,11 @@ public class ATM implements Persistable, Payable{
                 temp -= denomination50;
             } else if (temp >= denomination20) {
                 temp -= denomination20;
-            }else if (temp <= denomination20){
+            } else if (temp < denomination20) {
                 opportunity = false;
                 break;
             }
-            if (temp == 0){
+            if (temp == 0) {
                 opportunity = true;
             }
         }
@@ -70,11 +52,11 @@ public class ATM implements Persistable, Payable{
 
         System.out.println("How mach do you want to remove?");
         int minus = scanner.nextInt();
-        if (getCash() >= minus && minus >= 20 ) {
+        if (ReadWritePersistable.getCash() >= minus && minus >= 20) {
             checkDenomination(minus);
-            if (opportunity == true){
+            if (opportunity == true) {
                 System.out.println("The operation was successful");
-            }else {
+            } else {
                 System.out.println("Lack of funds");
             }
         } else {
@@ -82,8 +64,17 @@ public class ATM implements Persistable, Payable{
         }
 
         cash -= minus;
-        save(cash);
+        ReadWritePersistable.save(cash);
     }
 
-}
 
+     boolean rePlay() {
+        System.out.println("Exit ?");
+        int rePlay = scanner.nextInt();
+        if (rePlay == 1) {
+            return false;
+        } else{
+            return true;
+        }
+    }
+}
