@@ -8,18 +8,28 @@ import java.util.Scanner;
 public class ReadWrite implements Persistable {
 
     @Override
-    public int getCash() throws FileNotFoundException {
+    public int getCash()  {
         File file = new File("Cash");
-        Scanner scanner = new Scanner(file);
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("sorry reading error");
+        }
         int cash = scanner.nextInt();
         scanner.close();
         return cash;
     }
 
     @Override
-    public void save(int cash) throws FileNotFoundException {
+    public void save(int cash)  {
         File file = new File("Cash");
-        PrintWriter pw = new PrintWriter(file);
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("sorry reading error");
+        }
         pw.println(cash);
         pw.close();
     }

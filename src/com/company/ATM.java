@@ -1,11 +1,9 @@
 package com.company;
 
-
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class ATM implements Payable {
-    private Persistable ReadWritePersistable = new ReadWrite();
+    private Persistable readWritePersistable = new ReadWrite();
     private Scanner scanner = new Scanner(System.in);
     private boolean opportunity;
 
@@ -15,14 +13,14 @@ public class ATM implements Payable {
     }
 
     @Override
-    public void replenishment(int cash) throws FileNotFoundException {
+    public void replenishment(int cash) {
         System.out.println("How mach do you what to replenish?");
         int plus = scanner.nextInt();
         cash += plus;
-        ReadWritePersistable.save(cash);
+        readWritePersistable.save(cash);
     }
 
-    private boolean checkDenomination(int temp) {
+    private void checkDenomination(int temp) {
 
         int denomination20 = 20;
         int denomination50 = 50;
@@ -35,24 +33,21 @@ public class ATM implements Payable {
                 temp -= denomination50;
             } else if (temp >= denomination20) {
                 temp -= denomination20;
-            } else if (temp < denomination20) {
+            } else if (temp > 0 && temp < denomination20) {
                 opportunity = false;
                 break;
-            }
-            if (temp == 0) {
+            } else if (temp == 0) {
                 opportunity = true;
             }
         }
-
-        return opportunity;
     }
 
     @Override
-    public void takeOff(int cash) throws FileNotFoundException {
+    public void takeOff(int cash) {
 
         System.out.println("How mach do you want to remove?");
         int minus = scanner.nextInt();
-        if (ReadWritePersistable.getCash() >= minus && minus >= 20) {
+        if (readWritePersistable.getCash() >= minus && minus >= 20) {
             checkDenomination(minus);
             if (opportunity == true) {
                 System.out.println("The operation was successful");
@@ -64,16 +59,15 @@ public class ATM implements Payable {
         }
 
         cash -= minus;
-        ReadWritePersistable.save(cash);
+        readWritePersistable.save(cash);
     }
 
-
-     boolean rePlay() {
+    boolean rePlay() {
         System.out.println("Exit ?");
         int rePlay = scanner.nextInt();
         if (rePlay == 1) {
             return false;
-        } else{
+        } else {
             return true;
         }
     }

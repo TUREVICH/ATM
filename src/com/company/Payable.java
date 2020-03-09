@@ -1,11 +1,9 @@
 package com.company;
 
-import java.io.FileNotFoundException;
-
 public interface Payable {
-    void takeOff(int cash) throws FileNotFoundException;
+    void takeOff(int cash);
 
-    void replenishment(int cash) throws FileNotFoundException;
+    void replenishment(int cash);
 
     void getBalance(int cash);
 }

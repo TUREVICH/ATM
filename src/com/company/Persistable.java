@@ -1,11 +1,7 @@
 package com.company;
 
-import java.io.FileNotFoundException;
-
 public interface Persistable {
-    void save(int cash) throws FileNotFoundException;
+    void save(int cash);
 
-    int getCash() throws FileNotFoundException;
-
-
+    int getCash();
 }
