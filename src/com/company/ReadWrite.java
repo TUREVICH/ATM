@@ -14,7 +14,7 @@ public class ReadWrite implements Persistable {
         try {
             scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
-            System.out.println("sorry reading error");
+            System.out.println("sorry, reading error");
         }
         int cash = scanner.nextInt();
         scanner.close();
@@ -28,7 +28,7 @@ public class ReadWrite implements Persistable {
         try {
             pw = new PrintWriter(file);
         } catch (FileNotFoundException e) {
-            System.out.println("sorry reading error");
+            System.out.println("sorry, reading error");
         }
         pw.println(cash);
         pw.close();

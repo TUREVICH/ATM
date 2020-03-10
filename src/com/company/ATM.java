@@ -18,6 +18,7 @@ public class ATM implements Payable {
         int plus = scanner.nextInt();
         cash += plus;
         readWritePersistable.save(cash);
+        System.out.println("The operation was successful");
     }
 
     private void checkDenomination(int temp) {
@@ -45,27 +46,26 @@ public class ATM implements Payable {
     @Override
     public void takeOff(int cash) {
 
-        System.out.println("How mach do you want to remove?");
+        System.out.println("ATM issues denominations of 20 $, 50 $, 100 $" + "\n" + "How mach do you want to remove?");
         int minus = scanner.nextInt();
         if (readWritePersistable.getCash() >= minus && minus >= 20) {
             checkDenomination(minus);
             if (opportunity == true) {
                 System.out.println("The operation was successful");
+                cash -= minus;
             } else {
                 System.out.println("Lack of funds");
             }
         } else {
             System.out.println("Lack of funds");
         }
-
-        cash -= minus;
         readWritePersistable.save(cash);
     }
 
     boolean rePlay() {
-        System.out.println("Exit ?");
+        System.out.println("To exit press 0" + "\n" + "To continue press any key");
         int rePlay = scanner.nextInt();
-        if (rePlay == 1) {
+        if (rePlay == 0) {
             return false;
         } else {
             return true;
